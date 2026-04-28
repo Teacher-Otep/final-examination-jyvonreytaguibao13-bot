@@ -1,38 +1,72 @@
-//fucntion to show selected section
-function showSection(sectionID){
-    //initially, select all sections
-    // use querySelectorAll for all sections with class content and homecontent
-    const sections = document.querySelectorAll('.content');
-    const homesection = document.querySelectorAll('.homecontent');
 
-    //hide the resulting content sections using foreach
-    sections.forEach(section => {
-        section.style.display='none';
+function showSection(sectionID) {
+
+    const allSections = document.querySelectorAll('.content, .homecontent');
+    
+
+    allSections.forEach(section => {
+        section.style.display = 'none';
     });
 
-
-    //select the section that would
-    //be displayed when clicked
+   
     const activeSection = document.getElementById(sectionID);
-    if(activeSection){
-        activeSection.style.display='block';
+    if(activeSection) {
+        activeSection.style.display = 'block';
     }
 }
 
-//for the insertion success
+document.getElementById('logo').addEventListener('click', function() {
+
+    showSection('home');
+});
+
+
+document.getElementById('clrbtn').addEventListener('click', function() {
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => input.value = '');
+});
+
+
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('status') === 'success') {
         const toast = document.getElementById('success-toast');
         toast.classList.remove('toast-hidden');
-        
-        // Hide it automatically after 3 seconds
         setTimeout(() => {
             toast.style.opacity = '0';
             setTimeout(() => toast.classList.add('toast-hidden'), 500);
         }, 3000);
-
-        // Clean the URL
         window.history.replaceState({}, document.title, window.location.pathname);
     }
 }
+
+function confirmDelete() {
+    const id = document.getElementById('delete-id').value;
+    return confirm("Are you sure you want to delete student with ID: " + id + "? This cannot be undone.");
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    
+    const updateForm = document.getElementById('update-form');
+    if (updateForm) {
+        updateForm.addEventListener('submit', function(e) {
+            const id = document.getElementById('update-id').value;
+            if (id.trim() === "") {
+                e.preventDefault();
+                alert("Please enter a valid Student ID.");
+            }
+        });
+    }
+
+    const deleteForm = document.getElementById('delete-form');
+    if (deleteForm) {
+        deleteForm.addEventListener('submit', function(e) {
+            const id = document.getElementById('delete-id').value;
+            if (id.trim() === "") {
+                e.preventDefault();
+                alert("Please enter a valid Student ID to delete.");
+            }
+        });
+    }
+});

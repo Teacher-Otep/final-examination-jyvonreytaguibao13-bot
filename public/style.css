@@ -72,12 +72,12 @@ body{
     gap:20px;
 }
 
-/* For the insertion success message */
+
 #success-toast {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #4CAF50;
+    background-color: #4c68af;
     color: white;
     padding: 16px;
     border-radius: 8px;
