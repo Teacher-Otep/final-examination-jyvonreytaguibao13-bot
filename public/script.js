@@ -47,7 +47,7 @@ function confirmDelete() {
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Logic for Update Form
+    
     const updateForm = document.getElementById('update-form');
     if (updateForm) {
         updateForm.addEventListener('submit', function(e) {

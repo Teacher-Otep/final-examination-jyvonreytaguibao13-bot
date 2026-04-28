@@ -72,7 +72,7 @@ body{
     gap:20px;
 }
 
-/* For the insertion success message */
+
 #success-toast {
     position: fixed;
     top: 20px;
